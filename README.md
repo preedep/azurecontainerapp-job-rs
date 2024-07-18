@@ -18,7 +18,7 @@ This project use Azure REST API to start Azure Container App Job and get the job
   "DataActions": [],
   "NotDataActions": [],
   "AssignableScopes": [
-    "/subscriptions/9d3ff024-cfad-4108-a098-8e675fbc4cc4/resourceGroups/RG-SG-NICKDEV001"
+    "/subscriptions/<<subscription_id>>/resourceGroups/<<resource_group_name>>"
   ]
 }
 ```
