@@ -1,0 +1,1 @@
+az role assignment create --assignee abd73c26-934b-40b6-931a-44fba2cb6a47 --role CustomContainerAppsJobStarter --scope /subscriptions/9d3ff024-cfad-4108-a098-8e675fbc4cc4/resourceGroups/RG-SG-NICKDEV001

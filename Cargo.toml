@@ -1,0 +1,15 @@
+[package]
+name = "container_app_job"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+pretty_env_logger = "0.5"
+tokio = {version = "1", features = ["full"]}
+azure_identity = { version = "0.20" ,default-features = false, features = ["enable_reqwest_rustls"] }
+log = "0.4.22"
+oauth2 = { version =  "4.4" , features = ["rustls-tls"] }
+reqwest = { version = "0.12" ,default-features = false, features = ["rustls-tls","http2","json"]}
+dotenv = "0.15"
+serde = { version = "1.0", features = ["derive"] }
+time = "0.3"
