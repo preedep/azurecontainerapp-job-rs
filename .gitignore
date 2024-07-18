@@ -3,3 +3,5 @@
 Cargo.lock
 /.env
 .idea
+role_assign.sh
+role_define.sh

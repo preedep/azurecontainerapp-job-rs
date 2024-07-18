@@ -26,3 +26,7 @@ Create custom role definition in Azure AD
 ```chatinput
 az role definition create --role-definition ./customRoleDefinition.json
 ```
+
+```chatinput
+az role assignment create --assignee abd73c26-934b-40b6-931a-44fba2cb6a47 --role CustomContainerAppsJobStarter --scope /subscriptions/<<subscription_id>>/resourceGroups/<<resource_group_name>>
+```
