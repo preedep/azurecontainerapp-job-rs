@@ -1,9 +1,11 @@
-use log::{error, info};
 use crate::apis::AzureContainerAppClient;
-use crate::entities::{ContainerResources, EnvironmentVar, JobExecutionContainer, JobExecutionStatus, JobTemplate};
+use crate::entities::{
+    ContainerResources, EnvironmentVar, JobExecutionContainer, JobExecutionStatus, JobTemplate,
+};
+use log::{error, info};
 
-mod entities;
 mod apis;
+mod entities;
 
 #[tokio::main]
 async fn main() {
@@ -31,7 +33,7 @@ async fn main() {
     let start = client
         .start_job(
             "nick-aca-job-dev001",
-             JobTemplate{
+            JobTemplate {
                 containers: vec![JobExecutionContainer {
                     image: "nickmsft/batch_demo:latest".to_string(),
                     name: "my-job-batch-demo001".to_string(),
@@ -74,9 +76,7 @@ async fn main() {
             //waiting for job status
             loop {
                 tokio::time::sleep(tokio::time::Duration::from_secs(10)).await;
-                let res = client.get_job_execution_status(
-                    &job_start_response,
-                ).await;
+                let res = client.get_job_execution_status(&job_start_response).await;
                 match res {
                     Ok(job_status) => {
                         if job_status.properties.status == JobExecutionStatus::Succeeded {

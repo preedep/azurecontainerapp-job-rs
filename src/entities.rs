@@ -1,7 +1,7 @@
 use serde::{Deserialize, Serialize};
 use time::OffsetDateTime;
 
-#[derive(Debug, Clone,PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
 pub enum JobExecutionStatus {
     Running,
     Succeeded,
@@ -137,4 +137,3 @@ pub struct AzureAccessToken {
     pub(crate) access_token: String,
     pub(crate) expired_on: OffsetDateTime,
 }
-

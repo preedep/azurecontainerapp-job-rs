@@ -1,9 +1,11 @@
-use std::sync::Arc;
+use crate::entities::{
+    AzureAccessToken, AzureError, Error, JobExecutionStatusResponse, JobStartResponse, JobTemplate,
+};
 use azure_identity::client_credentials_flow;
 use log::{debug, info};
 use reqwest::header::AUTHORIZATION;
+use std::sync::Arc;
 use time::OffsetDateTime;
-use crate::entities::{AzureAccessToken, AzureError, Error, JobExecutionStatusResponse, JobStartResponse, JobTemplate};
 
 pub struct AzureContainerAppClient {
     client: Arc<reqwest::Client>,
@@ -53,7 +55,7 @@ impl AzureContainerAppClient {
             &["https://management.azure.com/.default"],
             &self.tenant_id,
         )
-            .await;
+        .await;
         match req {
             Ok(token) => {
                 debug!("Login Response : {:#?}", token);
@@ -134,10 +136,15 @@ impl AzureContainerAppClient {
     //
     // Get Job Execution Status
     //
-    pub async fn get_job_execution_status(&mut self,job_execution:  &JobStartResponse) -> Result<JobExecutionStatusResponse, AzureError> {
+    pub async fn get_job_execution_status(
+        &mut self,
+        job_execution: &JobStartResponse,
+    ) -> Result<JobExecutionStatusResponse, AzureError> {
         let token = self.get_access_token().await?;
         let url = format!(
-            "https://management.azure.com{}?api-version=2024-03-01",job_execution.id);
+            "https://management.azure.com{}?api-version=2024-03-01",
+            job_execution.id
+        );
         debug!("Get Job Status URL: {:?}", url);
         let req = self
             .client
@@ -169,6 +176,6 @@ impl AzureContainerAppClient {
                 };
                 Err(azure_error)
             }
-        }
+        };
     }
 }
